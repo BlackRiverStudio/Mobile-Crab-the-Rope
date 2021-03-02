@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 namespace Crab
 {
@@ -13,10 +13,7 @@ namespace Crab
         private void Start()
         {
             if (weight == null || hook == null || linkPrefab == null)
-            {
-                Debug.LogError(gameObject.name + " can't find something.");
-                return;
-            }
+                throw new System.Exception(gameObject.name + " can't find something.");
             GenerateRope();
         }
         private void GenerateRope()
@@ -32,15 +29,34 @@ namespace Crab
                 rope.Add(link);
             }
         }
-        public void CutDelayed(GameObject _object)
+        public void CutDelayed(GameObject _link)
         {
-            rope.Remove(_object);
-            Destroy(_object);
+            rope.Remove(_link);
+            Destroy(_link);
+            StartCoroutine(Fade());
+        }
+        private IEnumerator Fade()
+        {
+            yield return new WaitForSeconds(0.45f);
+
+            SpriteRenderer linkSprite = rope[rope.Count - 1].GetComponent<SpriteRenderer>();
+            Color colour = linkSprite.color;
+            while (colour.a > -0.1)
+            {
+                foreach (GameObject link in rope)
+                {
+                    SpriteRenderer linkSpriteF = link.GetComponent<SpriteRenderer>();
+                    Color colourF = linkSpriteF.color;
+                    colourF.a -= 0.0255f;
+                    linkSpriteF.color = colourF;
+                }
+                yield return null;
+            }
             StartCoroutine(CutAll());
         }
         private IEnumerator CutAll()
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.1f);
             foreach (GameObject link in rope) Destroy(link);
             rope.Clear();
         }
