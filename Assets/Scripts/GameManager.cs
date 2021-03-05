@@ -11,8 +11,9 @@ namespace Crab
         {
 #if UNITY_EDITOR
             EditorApplication.isPlaying = false;
-#endif
+#else
             Application.Quit();
+#endif
         }
     }
 }

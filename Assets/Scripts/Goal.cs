@@ -1,5 +1,6 @@
 using UnityEngine;
 using Button = UnityEngine.UI.Button;
+using IEnumerator = System.Collections.IEnumerator;
 namespace Crab
 {
     [RequireComponent(typeof(Collider2D))]
@@ -17,15 +18,19 @@ namespace Crab
         public void Win()
         {
             Destroy(weight.gameObject);
+            StartCoroutine(Wait());
             winPanel.SetActive(transform);
             nextButton.interactable = true;
         }
         public void Loss()
         {
             Destroy(weight.gameObject);
-            //StartCoroutine("Wait");
+            StartCoroutine(Wait());
             winPanel.SetActive(true);
         }
-        //IEnumerator Wait() => WaitForSeconds(0.5f);
+        private IEnumerator Wait()
+        {
+            yield return new WaitForSeconds(0.75f);
+        }
     }
 }
