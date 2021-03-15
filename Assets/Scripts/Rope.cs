@@ -14,6 +14,8 @@ namespace Crab
         {
             if (weight == null || hook == null || linkPrefab == null)
                 throw new System.Exception(gameObject.name + " can't find something.");
+
+            hook.GetComponent<HingeJoint2D>().connectedAnchor = Vector2.zero;
             GenerateRope();
         }
         private void GenerateRope()
@@ -22,7 +24,12 @@ namespace Crab
             for (int i = 0; i < links; i++)
             {
                 GameObject link = Instantiate(linkPrefab, transform);
+
                 HingeJoint2D joint = link.GetComponent<HingeJoint2D>();
+                if (i == 0)
+                {
+                    joint.connectedAnchor = Vector2.zero;
+                }
                 joint.connectedBody = prev;
                 if (i < links - 1) prev = link.GetComponent<Rigidbody2D>();
                 else weight.ConnectRopeEnd(link.GetComponent<Rigidbody2D>());

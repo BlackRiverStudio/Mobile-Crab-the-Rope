@@ -16,9 +16,10 @@ namespace Crab
                 if (hit2D.collider != null && hit2D.collider.CompareTag("Link")) Destroy(hit2D.collider.gameObject);
             }
 #else
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(0))
             {
-                RaycastHit2D hit2D = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+                Ray raymond = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit2D hit2D = Physics2D.Raycast(raymond.origin, raymond.direction);
                 if (hit2D.collider != null && hit2D.collider.CompareTag("Link"))
                 {
                     Rope rope = hit2D.collider.GetComponentInParent<Rope>();
