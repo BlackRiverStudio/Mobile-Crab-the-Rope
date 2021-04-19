@@ -18,8 +18,8 @@ namespace Crab
 #else
             if (Input.GetMouseButton(0))
             {
-                Ray raymond = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit2D hit2D = Physics2D.Raycast(raymond.origin, raymond.direction);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit2D hit2D = Physics2D.Raycast(ray.origin, ray.direction);
                 if (hit2D.collider != null && hit2D.collider.CompareTag("Link"))
                 {
                     Rope rope = hit2D.collider.GetComponentInParent<Rope>();

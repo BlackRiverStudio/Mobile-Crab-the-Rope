@@ -77,20 +77,15 @@ namespace BreadAndButter.Mobile
                     // Is this a completed flick?
                     else if (touch.phase == TouchPhase.Ended && touch.fingerId == initialFingerId && flickTime < 1f) CalculateFlick(touch.position);
 
-                    // -- Begin Swipe Storage -- //
+                    #region Swipe Storage
                     if (touch.phase == TouchPhase.Began) swipes.Add(touch.fingerId, new Swipe(touch.position, touch.fingerId));
 
-                    else if (touch.phase == TouchPhase.Moved && swipes.TryGetValue(touch.fingerId, out Swipe swipe))
-                    {
-                        // We have a swipe for this finger, so add the new position to the list.
-                        swipe.positions.Add(touch.position);
-                    }
-                    else if ((touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled) && swipes.TryGetValue(touch.fingerId, out swipe))
-                    {
-                        // The swipe has ended so remove it.
-                        swipes.Remove(swipe.fingerId);
-                    }
-                    // -- End Swipe Storage -- //
+                    // We have a swipe for this finger, so add the new position to the list.
+                    else if (touch.phase == TouchPhase.Moved && swipes.TryGetValue(touch.fingerId, out Swipe swipe)) swipe.positions.Add(touch.position);
+                    
+                    // The swipe has ended so remove it.
+                    else if ((touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled) && swipes.TryGetValue(touch.fingerId, out swipe)) swipes.Remove(swipe.fingerId);
+                    #endregion
                 }
 
                 // Incriment the time that this swipe has been running.
