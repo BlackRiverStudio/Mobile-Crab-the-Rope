@@ -13,7 +13,7 @@ namespace Crab
             index = 0;
             foreach (Button button in o) button.interactable = false;
         }
-        private void OnTriggerEnter2D(Collider2D _collider)
+        private void OnTriggerEnter(Collider _collider)
         {
             if (_collider.gameObject.CompareTag("Collectable"))
             {
@@ -24,13 +24,15 @@ namespace Crab
             if (_collider.gameObject.CompareTag("Goal")) goal.Win();
             if (_collider.gameObject.CompareTag("Side")) goal.Loss();
         }
-        public void ConnectRopeEnd(Rigidbody2D _ropeEnd)
+        public void ConnectRopeEnd(Rigidbody _ropeEnd, float _dist)
         {
-            HingeJoint2D joint = gameObject.AddComponent<HingeJoint2D>();
+            HingeJoint joint = gameObject.AddComponent<HingeJoint>();
             joint.autoConfigureConnectedAnchor = false;
             joint.connectedBody = _ropeEnd;
             joint.anchor = Vector2.zero;
-            joint.connectedAnchor = new Vector2(0f, -conAncY);
+            joint.connectedAnchor = new Vector2(0f, 0f);
+            //joint.maxDistance = _dist;
+            //joint.spring = 10000;
         }
     }
 }

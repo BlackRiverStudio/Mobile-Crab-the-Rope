@@ -2186,6 +2186,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1776495123}
     m_Modifications:
+    - target: {fileID: 1053891059756595818, guid: 1e76c2199677cac4eb2e07d8e37d6fb8, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2241460558033032740, guid: 1e76c2199677cac4eb2e07d8e37d6fb8, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -2651,6 +2655,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1776495123}
     m_Modifications:
+    - target: {fileID: 1053891059756595818, guid: 1e76c2199677cac4eb2e07d8e37d6fb8, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053891059756595818, guid: 1e76c2199677cac4eb2e07d8e37d6fb8, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2241460558033032740, guid: 1e76c2199677cac4eb2e07d8e37d6fb8, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -2796,6 +2808,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weight
       objectReference: {fileID: 0}
+    - target: {fileID: 3072314887676579748, guid: 59f5ebcf680f2264db30485a910620fb, type: 3}
+      propertyPath: m_Constraints
+      value: 56
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59f5ebcf680f2264db30485a910620fb, type: 3}
 --- !u!1001 &1967969292258661754
@@ -2862,6 +2878,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1776495123}
     m_Modifications:
+    - target: {fileID: 1053891059756595818, guid: 1e76c2199677cac4eb2e07d8e37d6fb8, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2241460558033032740, guid: 1e76c2199677cac4eb2e07d8e37d6fb8, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2983,6 +3003,10 @@ PrefabInstance:
     - target: {fileID: 6618096718205090771, guid: ab504e25f4075ec45b2aa09086cbcb77, type: 3}
       propertyPath: m_Name
       value: Collectable
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618096718205090771, guid: ab504e25f4075ec45b2aa09086cbcb77, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab504e25f4075ec45b2aa09086cbcb77, type: 3}

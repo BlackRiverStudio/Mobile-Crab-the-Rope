@@ -6,7 +6,7 @@ namespace Crab
     public class Rope : MonoBehaviour
     {
         [SerializeField] private Weight weight;
-        [SerializeField] private Rigidbody2D hook;
+        [SerializeField] private Rigidbody hook;
         [SerializeField] private GameObject linkPrefab;
         [SerializeField] private int links = 7;
         [SerializeField, Range(0, 1)] private float tightenFactor = 1;
@@ -15,12 +15,12 @@ namespace Crab
         {
             if (weight == null || hook == null || linkPrefab == null) throw new System.Exception(gameObject.name + " can't find something.");
 
-            hook.GetComponent<HingeJoint2D>().connectedAnchor = Vector2.zero;
+            hook.GetComponent<HingeJoint>().connectedAnchor = Vector2.zero;
             GenerateRope();
         }
         private void GenerateRope()
         {
-            Rigidbody2D prev = hook;
+            Rigidbody prev = hook;
             float hookDist = Vector2.Distance(transform.position, weight.transform.position);
             float distStep = (hookDist / links) * tightenFactor;
 
@@ -28,12 +28,12 @@ namespace Crab
             {
                 GameObject link = Instantiate(linkPrefab, transform);
 
-                SpringJoint2D joint = link.GetComponent<SpringJoint2D>();
+                SpringJoint joint = link.GetComponent<SpringJoint>();
                 if (i == 0) joint.connectedAnchor = Vector2.zero;
                 joint.connectedBody = prev;
-                joint.distance = distStep;
-                if (i < links - 1) prev = link.GetComponent<Rigidbody2D>();
-                else weight.ConnectRopeEnd(link.GetComponent<Rigidbody2D>());
+                joint.maxDistance = distStep;
+                if (i < links - 1) prev = link.GetComponent<Rigidbody>();
+                else weight.ConnectRopeEnd(link.GetComponent<Rigidbody>(), distStep);
                 rope.Add(link);
             }
         }

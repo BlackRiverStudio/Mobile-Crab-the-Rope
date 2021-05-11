@@ -2,12 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 namespace BreadAndButter.Mobile
 {
-    public enum JoystickAxis
-    {
-        None,
-        Horizontal,
-        Vertical
-    }
+    public enum JoystickAxis { None, Horizontal, Vertical };
     public class JoystickInput : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
     {
         /// <summary>The input axis value that the joystick represents. Both the direction and amount on each axis.</summary>
